@@ -7,16 +7,29 @@ import (
 
 type BasmBody struct {
 	*bmmeta.BasmMeta
-	lines []*BasmLine
+	Lines []*BasmLine
 }
 
 type BasmLine struct {
 	*bmmeta.BasmMeta
-	operand  *BasmElement
-	elements []*BasmElement
+	Operand  *BasmElement
+	Elements []*BasmElement
 }
 
 type BasmElement struct {
 	*bmmeta.BasmMeta
 	string
+}
+
+func (be *BasmElement) SetValue(val string) {
+	if be != nil {
+		be.string = val
+	}
+}
+
+func (be *BasmElement) GetValue() string {
+	if be != nil {
+		return be.string
+	}
+	return ""
 }

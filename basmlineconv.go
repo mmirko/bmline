@@ -1,0 +1,54 @@
+package bmline
+
+import (
+	"strings"
+)
+
+func Text2BasmLine(line string) (*BasmLine, error) {
+	splitted := strings.Split(line, "::")
+	argN := len(splitted)
+	operand := splitted[0]
+
+	newElem := new(BasmElement)
+	newElem.string = operand
+
+	newLine := new(BasmLine)
+	newLine.Operand = newElem
+	if argN > 1 {
+		arguments := splitted[1:]
+		newArgs := make([]*BasmElement, len(arguments))
+		for i, arg := range arguments {
+			argFlags := strings.Split(arg, "--")
+
+			newArg := new(BasmElement)
+			newArg.string = argFlags[0]
+
+			if len(argFlags) > 1 {
+				for _, meta := range argFlags[1:] {
+					key, value := strings.Split(meta, "=")[0], strings.Split(meta, "=")[1]
+					newArg.BasmMeta = newArg.SetMeta(key, value)
+				}
+			}
+
+			newArgs[i] = newArg
+		}
+		newLine.Elements = newArgs
+	}
+	return newLine, nil
+}
+
+func BasmLine2Text(bline *BasmLine) (string, error) {
+
+	result := ""
+
+	result += bline.Operand.string
+
+	for _, arg := range bline.Elements {
+		result += "::" + arg.string
+		for key, val := range arg.LoopMeta() {
+			result += "--" + key + "=" + val
+		}
+
+	}
+	return result, nil
+}

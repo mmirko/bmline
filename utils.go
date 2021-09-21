@@ -29,7 +29,7 @@ func (body *BasmBody) String() string {
 		result += blue("[]\n")
 	} else {
 		result += blue("[" + body.ListMeta() + "]\n")
-		for lineN, line := range body.lines {
+		for lineN, line := range body.Lines {
 			result += "\t\t\t" + fmt.Sprint(lineN) + blue("["+line.ListMeta()+"]") + ":" + line.String() + "\n"
 		}
 	}
@@ -37,8 +37,8 @@ func (body *BasmBody) String() string {
 }
 
 func (line *BasmLine) String() string {
-	result := line.operand.String()
-	for _, arg := range line.elements {
+	result := line.Operand.String()
+	for _, arg := range line.Elements {
 		result += arg.String()
 	}
 	return result
