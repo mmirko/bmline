@@ -13,7 +13,7 @@ func Text2BasmLine(line string) (*BasmLine, error) {
 	newElem.string = operand
 
 	newLine := new(BasmLine)
-	newLine.Operand = newElem
+	newLine.Operation = newElem
 	if argN > 1 {
 		arguments := splitted[1:]
 		newArgs := make([]*BasmElement, len(arguments))
@@ -41,7 +41,7 @@ func BasmLine2Text(bline *BasmLine) (string, error) {
 
 	result := ""
 
-	result += bline.Operand.string
+	result += bline.Operation.string
 
 	for _, arg := range bline.Elements {
 		result += "::" + arg.string

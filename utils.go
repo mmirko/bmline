@@ -37,7 +37,7 @@ func (body *BasmBody) String() string {
 }
 
 func (line *BasmLine) String() string {
-	result := line.Operand.String()
+	result := line.Operation.String()
 	for _, arg := range line.Elements {
 		result += arg.String()
 	}

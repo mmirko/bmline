@@ -16,7 +16,7 @@ func FilterMatcher(m *BasmLine, filterType string) bool {
 }
 
 func MatchMatcher(m *BasmLine, l *BasmLine) bool {
-	if m.Operand.string == l.Operand.string {
+	if m.Operation.string == l.Operation.string {
 		if len(m.Elements) == len(l.Elements) {
 			for i, arg := range l.Elements {
 				if !MatchArg(m.Elements[i], arg) {

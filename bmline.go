@@ -12,8 +12,8 @@ type BasmBody struct {
 
 type BasmLine struct {
 	*bmmeta.BasmMeta
-	Operand  *BasmElement
-	Elements []*BasmElement
+	Operation *BasmElement
+	Elements  []*BasmElement
 }
 
 type BasmElement struct {
