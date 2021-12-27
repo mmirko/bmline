@@ -16,7 +16,7 @@ func FilterMatcher(m *BasmLine, filterType string) bool {
 }
 
 func MatchMatcher(m *BasmLine, l *BasmLine) bool {
-	if m.Operation.string == l.Operation.string {
+	if MatchArg(m.Operation, l.Operation) {
 		if len(m.Elements) == len(l.Elements) {
 			for i, arg := range l.Elements {
 				if !MatchArg(m.Elements[i], arg) {
@@ -36,8 +36,5 @@ func MatchArg(m *BasmElement, l *BasmElement) bool {
 		}
 	}
 	re := regexp.MustCompile("^" + m.string + "$")
-	if re.MatchString(m.string) {
-		return true
-	}
-	return false
+	return re.MatchString(l.string)
 }

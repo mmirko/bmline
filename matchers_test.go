@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestBasmLineConv(t *testing.T) {
-
+func TestMatchers(t *testing.T) {
+	// TODO Fare il vero
 	tests := []string{"prova::*--type=reg",
 		"prova2::*--type=reg",
 		"prova3--exec=async::*--type=reg"}
